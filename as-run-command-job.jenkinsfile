@@ -1,4 +1,4 @@
-s//region
+//region
 pipeline {
     agent {label "${params.run_on_node}"}
     options {
