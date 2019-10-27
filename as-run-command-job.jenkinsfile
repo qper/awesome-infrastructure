@@ -1,4 +1,4 @@
-//region
+s//region
 pipeline {
     agent {label "${params.run_on_node}"}
     options {
@@ -15,8 +15,8 @@ pipeline {
         choice(
                 name: 'run_on_node',
                 choices: [
-                        'linux1',
-                        'linux2'
+                        'Jenkins',
+                        'linux'
                 ],
                 description: 'select jenkins node to run code'
         )
