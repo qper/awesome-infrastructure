@@ -1,6 +1,7 @@
 //region
 pipeline {
-    agent {label "${params.run_on_node}"}
+    //agent {label "${params.run_on_node}"}
+    agent any
     options {
         ansiColor('xterm')
         buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
