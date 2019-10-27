@@ -23,7 +23,7 @@ pipeline {
         )
         text(
                 name: 'bash_code',
-                defaultValue: '#!/usr/bin/env bash\nset -e\nenv|sort\nexport LOOP_COUNT=100\nfor i in $(seq 1 $LOOP_COUNT); do echo "Loop count: $i" && nvidia-smi || true && sleep 10;done;\n',
+                defaultValue: '#!/usr/bin/env bash\nset -e\nenv|sort\n',
                 description: 'put here any valid bash code'
 
         )
