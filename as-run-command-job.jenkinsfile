@@ -1,0 +1,71 @@
+//region
+pipeline {
+    agent {label "${params.run_on_node}"}
+    options {
+        ansiColor('xterm')
+        buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
+        //disableConcurrentBuilds()
+        timeout(time: 180, unit: 'MINUTES')
+        timestamps()
+    }
+    environment {
+        FOO="BOO"
+    }
+    parameters {
+        choice(
+                name: 'run_on_node',
+                choices: [
+                        'linux1',
+                        'linux2'
+                ],
+                description: 'select jenkins node to run code'
+        )
+        text(
+                name: 'bash_code',
+                defaultValue: '#!/usr/bin/env bash\nset -e\nenv|sort\nexport LOOP_COUNT=100\nfor i in $(seq 1 $LOOP_COUNT); do echo "Loop count: $i" && nvidia-smi || true && sleep 10;done;\n',
+                description: 'put here any valid bash code'
+
+        )
+    }
+    stages {
+        stage("Change displayname") {
+            steps { changeJobDisplayName() }
+        }
+        stage("Cleanup workspace") {
+            steps { cleanWs() }
+        }
+        stage("Run setup") {
+            steps { runSetup() }
+        }
+    }
+    post {
+        failure {
+            emailext subject: '$DEFAULT_SUBJECT',
+                    body: '$DEFAULT_CONTENT',
+                    replyTo: 'asitnn@gmail.com.com',
+                    to: 'asitnn@gmail.com.com'
+        }
+        always {
+            cleanWs()
+        }
+    }
+}
+//endregion
+
+//region Job settings
+def changeJobDisplayName() {
+    if (params.run_on_node != null){
+        currentBuild.displayName = currentBuild.displayName + "::" +
+                params.run_on_node
+    }
+}
+//endregion
+
+//region Run setup
+def runSetup(){
+    echo "Run setup: "
+    sh """
+        $bash_code  
+    """
+}
+//endregion
