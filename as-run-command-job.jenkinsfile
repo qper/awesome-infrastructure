@@ -43,8 +43,8 @@ pipeline {
         failure {
             emailext subject: '$DEFAULT_SUBJECT',
                     body: '$DEFAULT_CONTENT',
-                    replyTo: 'asitnn@gmail.com.com',
-                    to: 'asitnn@gmail.com.com'
+                    replyTo: 'alsmirnov@luxoft.com',
+                    to: 'alsmirnov@luxoft.com'
         }
         always {
             cleanWs()
