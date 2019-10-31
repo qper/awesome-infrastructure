@@ -12,6 +12,9 @@ pipeline {
     environment {
         FOO="BOO"
     }
+    triggers {
+        cron('*/5 * * * *')
+    }
     parameters {
         choice(
                 name: 'run_on_node',
@@ -64,9 +67,10 @@ def changeJobDisplayName() {
 
 //region Run setup
 def runSetup(){
+    def bashCode = params.bash_code? params.bash_code :'pwd'
     echo "Run setup: "
     sh """
-        $bash_code  
+        $bashCode  
     """
 }
 //endregion
