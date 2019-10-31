@@ -13,7 +13,7 @@ pipeline {
         FOO="BOO"
     }
     triggers {
-        cron('*/5 * * * *')
+        cron('H/5 * * * *')
     }
     parameters {
         choice(
