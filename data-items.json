@@ -1,11 +1,11 @@
 {
    "data":[
       {
-         "text":"0.0.18",
+         "text":"carbon_ui-develop-b5142-9e1b6f17-daily-linux_x86_64-hmi_sw_common",
          "isMetadata":false
       },
       {
-         "text":"0.0.10",
+         "text":"carbon_ui-develop-b5143-777aa927-daily-linux_x86_64-hmi_sw_common",
          "isMetadata":false
       },
       {
@@ -13,11 +13,11 @@
          "isMetadata":true
       },
       {
-         "text":"0.0.33",
+         "text":"carbon_ui-develop-b5144-f06be905-daily-linux_x86_64-hmi_sw_common",
          "isMetadata":false
       },
       {
-         "text":"0.0.4",
+         "text":"latest",
          "isMetadata":false
       }
    ]
